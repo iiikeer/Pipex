@@ -6,23 +6,87 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:08:06 by iullibar          #+#    #+#             */
-/*   Updated: 2024/11/29 15:24:19 by iullibar         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:59:01 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
+static char	*concat_line(char *line, char *buffer)
+{
+	char	*new_line;
+	size_t	len1;
+	size_t	len2;
+
+	len1 = ft_strlen(line);
+	len2 = 0;
+	while (buffer[len2] != '\0' && buffer[len2] != '\n')
+		len2++;
+	if (buffer[len2] == '\n')
+		len2++;
+	new_line = (char *)malloc(len1 + len2 + 1);
+	if (new_line == NULL)
+		return (free(line), NULL);
+	ft_strcpy(new_line, line, len1);
+	ft_strcpy(new_line + len1, buffer, len2);
+	new_line[len1 + len2] = '\0';
+	return (free(line), new_line);
+}
+
+static void	obtain_remaining(char *buffer)
+{
+	size_t	i;
+	size_t	res;
+
+	i = 0;
+	while (buffer[i] != '\n' && buffer[i] != '\0')
+		i++;
+	if (buffer[i] == '\n')
+	{
+		res = ft_strlen(&buffer[i + 1]);
+		ft_strcpy(buffer, &buffer[i + 1], res);
+		buffer[res] = '\0';
+	}
+	else
+		buffer[0] = '\0';
+}
+
+static char	*get_next_line1(int fd)
+{
+	static char	buffer[BUFFER_SIZE + 1];
+	char		*line;
+	ssize_t		bytes_read;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	line = concat_line(NULL, buffer);
+	if (line == NULL)
+		return (NULL);
+	while (ft_strchr(line, '\n') == 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1 || (bytes_read == 0 && ft_strlen(line) == 0))
+			return (buffer[0] = '\0', free(line), NULL);
+		if (bytes_read == 0)
+			break ;
+		buffer[bytes_read] = '\0';
+		line = concat_line(line, buffer);
+		if (line == NULL)
+			return (NULL);
+	}
+	return (obtain_remaining(buffer), line);
+}
+
 void	fill_here_doc(char *limit, int fd)
 {
 	char	*str;
 
-	str = get_next_line(0);
+	str = get_next_line1(0);
 	while (ft_strncmp(str, limit, ft_strlen(limit)) != 0)
 	{
 		ft_putstr_fd(str, fd);
 		free(str);
-		str = get_next_line(0);
+		str = get_next_line1(0);
 	}
-	ft_putstr_fd(str, fd);
 	free(str);
 }

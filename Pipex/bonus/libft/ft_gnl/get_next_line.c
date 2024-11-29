@@ -6,11 +6,11 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:58:39 by iullibar          #+#    #+#             */
-/*   Updated: 2024/11/28 13:21:17 by iullibar         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:49:30 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../libft.h"
 
 char	*get_next_line(int fd)
 {

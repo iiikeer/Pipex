@@ -6,7 +6,7 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:14:23 by iullibar          #+#    #+#             */
-/*   Updated: 2024/11/20 09:03:41 by iullibar         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:58:34 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t		ft_strlen(const char *str);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
 size_t		ft_strlcat(char *dest, const char *src, size_t size);
+void		ft_strcat(char *dest, const char *src);
+void		ft_strcpy(char *dst, char *src, size_t dstsize);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -80,10 +82,11 @@ int			ft_printf_hex(unsigned int nbr, int upper);
 #  define BUFFER_SIZE 1
 # endif
 
-char		*get_next_line(int fd);
-char		*ft_read_next_line(int fd, char *next_line);
-char		*ft_get_line(const char *next_line);
-char		*ft_clean_line(char *next_line);
+char	*get_next_line(int fd);
+char	*ft_read_next_line(int fd, char *next_line);
+char	*ft_get_line(char *next_line);
+char	*ft_clean_line(char *next_line);
+char	*ft_free_gnl(char **str);
 
 //Manipulacion de Listas
 typedef struct s_list

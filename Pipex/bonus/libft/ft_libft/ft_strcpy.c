@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_line.c                                      :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 12:47:21 by iullibar          #+#    #+#             */
-/*   Updated: 2024/11/29 16:49:01 by iullibar         ###   ########.fr       */
+/*   Created: 2024/11/29 16:57:42 by iullibar          #+#    #+#             */
+/*   Updated: 2024/11/29 16:58:14 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_get_line(char *next_line)
+void	ft_strcpy(char *dst, char *src, size_t dstsize)
 {
-	char	*line;
-	char	*ptr;
-	int		len;
+	size_t	i;
 
-	ptr = ft_strchr(next_line, '\n');
-	len = (ptr - next_line) + 1;
-	line = ft_substr(next_line, 0, len);
-	if (!line)
-		return (NULL);
-	return (line);
+	i = 0;
+	while (i < dstsize)
+	{
+		dst[i] = src[i];
+		i++;
+	}
 }
