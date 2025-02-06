@@ -6,11 +6,11 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:53:42 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:35:54 by iullibar         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:28:55 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
 void	check_cmd_path(t_pipex **pipex, t_info *info, char **paths, int i)
 {

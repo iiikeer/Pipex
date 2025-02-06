@@ -6,11 +6,11 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 12:28:16 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:36:15 by iullibar         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:29:16 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
 int	exec_cmd(t_pipex *pipe, t_info *info, int input_fd, int output_fd)
 {

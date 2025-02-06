@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_last_node.c                                     :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 14:02:36 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:36:20 by iullibar         ###   ########.fr       */
+/*   Created: 2024/11/19 14:43:27 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:29:31 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
-t_pipex	*ft_last_node(t_pipex *stack)
+void	ft_error(t_pipex **pipex, t_info *info)
 {
-	while (stack->next != 0)
-		stack = stack->next;
-	return (stack);
+	static int	error;
+
+	ft_free_pipex(pipex);
+	if (info)
+		free(info);
+	if (error == 0)
+	{
+		ft_printf("Error\n");
+		error = 1;
+	}
+	exit(EXIT_FAILURE);
 }

@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_here_doc_bonus.c                              :+:      :+:    :+:   */
+/*   set_cmd_paths.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 15:08:06 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:35:44 by iullibar         ###   ########.fr       */
+/*   Created: 2024/11/18 17:00:24 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:29:04 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
-void	fill_here_doc(char *limit, int fd)
+void	set_cmd_paths(t_pipex *pipex, char **paths, char *cmd)
 {
-	char	*str;
+	char	*cmd_path;
+	int		i;
 
-	str = get_next_line(0);
-	while (ft_strncmp(str, limit, ft_strlen(limit)) != 0)
+	i = 0;
+	while (paths[i])
 	{
-		ft_putstr_fd(str, fd);
-		free(str);
-		str = get_next_line(0);
+		cmd_path = check_path(cmd, paths[i]);
+		if (cmd_path)
+		{
+			if (pipex->path)
+				free(pipex->path);
+			pipex->path = cmd_path;
+			return ;
+		}
+		i++;
 	}
-	free(str);
 }

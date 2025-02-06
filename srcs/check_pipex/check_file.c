@@ -6,11 +6,11 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 08:54:07 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 16:10:57 by iullibar         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:28:58 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
 void	check_file(t_pipex **pipex, t_info *info, int fds[2])
 {

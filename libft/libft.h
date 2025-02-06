@@ -6,16 +6,16 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:14:23 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 11:47:54 by iullibar         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:27:12 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include <stdio.h>
 
 //Verificacion y Conversion de Caracteres
 int			ft_toupper(int c);
@@ -30,8 +30,6 @@ char		**ft_split(char const *s, char c);
 
 //Escritura de datos
 void		ft_putchar_fd(char c, int fd);
-void		ft_putendl_fd(char *s, int fd);
-void		ft_putnbr_fd(int nbr, int fd);
 void		ft_putstr_fd(char *s, int fd);
 
 //Printf

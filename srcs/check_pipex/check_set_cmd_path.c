@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_argv.c                                       :+:      :+:    :+:   */
+/*   check_set_cmd_path.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 13:20:42 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:35:52 by iullibar         ###   ########.fr       */
+/*   Created: 2024/11/18 17:02:10 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:29:02 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
-int	check_argv(int argc, char **argv)
+void	check_set_cmd_paths(t_pipex **pipex, t_info *info)
 {
-	int	i;
+	int		i;
+	char	**paths;
 
 	i = 0;
-	while (i < (argc - 1))
+	paths = NULL;
+	while (info->env[i])
 	{
-		if (ft_strncmp(argv[i], "", 1) == 0)
-			return (0);
-		i ++;
+		if (ft_strncmp(info->env[i], "PATH=", 5) == 0)
+			paths = ft_split(info->env[i] + 5, ':');
+		i++;
 	}
-	return (1);
+	if (!paths)
+		ft_error(pipex, info);
+	if (ft_strncmp(info->argv[1], "here_doc", 8) == 0)
+		i = 3;
+	else
+		i = 2;
+	check_cmd_path(pipex, info, paths, i);
 }

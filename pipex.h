@@ -6,16 +6,13 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:00:01 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/09 12:40:09 by iullibar         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:26:52 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h> 
 # include <stdbool.h>

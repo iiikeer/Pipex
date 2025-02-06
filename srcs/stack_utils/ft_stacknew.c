@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_path.c                                       :+:      :+:    :+:   */
+/*   ft_stacknew.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 11:36:23 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:36:00 by iullibar         ###   ########.fr       */
+/*   Created: 2024/10/16 17:11:47 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:29:27 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
-char	*check_path(char *cmd, char *path_prefix)
+t_pipex	*ft_stacknew(char **command)
 {
-	char	*temp_path;
-	char	*cmd_path;
+	t_pipex		*new;
 
-	temp_path = ft_strjoin(path_prefix, "/");
-	if (!temp_path)
+	new = (t_pipex *)malloc(sizeof(t_pipex));
+	if (!new)
 		return (NULL);
-	cmd_path = ft_strjoin(temp_path, cmd);
-	free(temp_path);
-	if (!cmd_path)
-		return (NULL);
-	if (access(cmd_path, X_OK) == 0)
-		return (cmd_path);
-	free(cmd_path);
-	return (NULL);
+	new->cmd = command;
+	new->path = NULL;
+	new->pid = -1;
+	new->next = NULL;
+	return (new);
 }

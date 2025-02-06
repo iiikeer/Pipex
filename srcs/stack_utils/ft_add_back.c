@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_cmd_paths.c                                    :+:      :+:    :+:   */
+/*   ft_add_back.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 17:00:24 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:36:04 by iullibar         ###   ########.fr       */
+/*   Created: 2024/10/28 10:27:45 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:29:20 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
-void	set_cmd_paths(t_pipex *pipex, char **paths, char *cmd)
+void	ft_add_back(t_pipex **stack, t_pipex *new)
 {
-	char	*cmd_path;
-	int		i;
+	t_pipex	*nodo;
 
-	i = 0;
-	while (paths[i])
+	nodo = *stack;
+	if (!*stack)
 	{
-		cmd_path = check_path(cmd, paths[i]);
-		if (cmd_path)
-		{
-			if (pipex->path)
-				free(pipex->path);
-			pipex->path = cmd_path;
-			return ;
-		}
-		i++;
+		*stack = new;
+		return ;
 	}
+	while (nodo->next)
+		nodo = nodo->next;
+	nodo->next = new;
 }

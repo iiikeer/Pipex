@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_pipex.c                                      :+:      :+:    :+:   */
+/*   fill_here_doc_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 09:49:52 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:36:12 by iullibar         ###   ########.fr       */
+/*   Created: 2024/11/29 15:08:06 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:26:57 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
-void	close_pipex(t_pipex **pipex, t_info *info, int pipe_fd[2], int fds[2])
+void	fill_here_doc(char *limit, int fd)
 {
-	t_pipex	*node;
+	char	*str;
 
-	node = *pipex;
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
-	while (node != NULL)
+	str = get_next_line(0);
+	while (ft_strncmp(str, limit, ft_strlen(limit)) != 0)
 	{
-		waitpid(node->pid, NULL, 0);
-		node = node->next;
+		ft_putstr_fd(str, fd);
+		free(str);
+		str = get_next_line(0);
 	}
-	close(fds[0]);
-	close(fds[1]);
-	if (ft_strncmp(info->argv[1], "here_doc", 8) == 0)
-		unlink("here_doc");
-	free(info);
-	ft_free_pipex(pipex);
+	free(str);
 }

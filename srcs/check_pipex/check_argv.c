@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   check_argv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 12:32:22 by iullibar          #+#    #+#             */
-/*   Updated: 2024/10/16 10:37:42 by iullibar         ###   ########.fr       */
+/*   Created: 2024/11/27 13:20:42 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:28:53 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../../pipex.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	check_argv(int argc, char **argv)
 {
-	if (s == NULL)
-		return ;
-	ft_putstr_fd(s, fd);
-	write(fd, "\n", 1);
+	int	i;
+
+	i = 0;
+	while (i < (argc - 1))
+	{
+		if (ft_strncmp(argv[i], "", 1) == 0)
+			return (0);
+		i ++;
+	}
+	return (1);
 }

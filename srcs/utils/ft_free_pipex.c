@@ -6,11 +6,11 @@
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 16:43:31 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:36:30 by iullibar         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:29:33 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
 void	ft_free_pipex(t_pipex **pipex)
 {

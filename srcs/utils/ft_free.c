@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nodenew.c                                       :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 10:14:52 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:36:22 by iullibar         ###   ########.fr       */
+/*   Created: 2024/11/27 12:40:16 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:29:34 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
-t_info	*ft_nodenew(int argc, char **argv, char **env)
+void	ft_free(char **array)
 {
-	t_info		*new;
+	int	i;
 
-	new = (t_info *)malloc(sizeof(t_info));
-	if (!new)
-		return (NULL);
-	new->argc = argc;
-	new->argv = argv;
-	new->env = env;
-	return (new);
+	i = 0;
+	if (!array)
+		return ;
+	while (array[i])
+		free (array[i ++]);
+	free (array);
 }

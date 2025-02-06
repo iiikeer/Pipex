@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 14:43:27 by iullibar          #+#    #+#             */
-/*   Updated: 2024/12/12 11:53:52 by iullibar         ###   ########.fr       */
+/*   Created: 2024/11/19 11:36:23 by iullibar          #+#    #+#             */
+/*   Updated: 2025/02/06 10:29:00 by iullibar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../../pipex.h"
 
-void	ft_error(t_pipex **pipex, t_info *info)
+char	*check_path(char *cmd, char *path_prefix)
 {
-	static int	error;
+	char	*temp_path;
+	char	*cmd_path;
 
-	ft_free_pipex(pipex);
-	if (info)
-		free(info);
-	if (error == 0)
-	{
-		ft_printf("Error\n");
-		error = 1;
-	}
-	exit(EXIT_FAILURE);
+	temp_path = ft_strjoin(path_prefix, "/");
+	if (!temp_path)
+		return (NULL);
+	cmd_path = ft_strjoin(temp_path, cmd);
+	free(temp_path);
+	if (!cmd_path)
+		return (NULL);
+	if (access(cmd_path, X_OK) == 0)
+		return (cmd_path);
+	free(cmd_path);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 #    By: iullibar <iullibar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 16:57:01 by iullibar          #+#    #+#              #
-#    Updated: 2024/12/12 11:30:43 by iullibar         ###   ########.fr        #
+#    Updated: 2025/02/06 10:43:55 by iullibar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,39 +19,42 @@ NAME = pipex
 NAME_BONUS = pipex_bonus
 
 # Ficheros
-SRCS1 = main.c
-SRCS2 = $(wildcard check_pipex/*.c) \
-			$(wildcard pipe/*.c) \
-			$(wildcard utils/*.c) \
-			$(wildcard stack_utils/*.c) \
+SRCS = srcs/main.c \
+		$(wildcard srcs/check_pipex/*.c) \
+		$(wildcard srcs/pipe/*.c) \
+		$(wildcard srcs/utils/*.c) \
+		$(wildcard srcs/stack_utils/*.c) \
 
-SRCS3 = bonus/main_bonus.c \
-			bonus/fill_here_doc_bonus.c \
+SRCSB = $(wildcard srcs/check_pipex/*.c) \
+		$(wildcard srcs/pipe/*.c) \
+		$(wildcard srcs/utils/*.c) \
+		$(wildcard srcs/stack_utils/*.c) \
+		$(wildcard srcs/bonus/*.c) \
 
-OBJS1 = $(SRCS1:.c=.o)
-OBJS2 = $(SRCS2:.c=.o)
-OBJS3 = $(SRCS3:.c=.o)
+OBJS = $(SRCS:.c=.o)
+OBJSB = $(SRCSB:.c=.o)
 
 LIBS = libft/libft.a
 
 all: libs $(NAME)
 
 libs:
-	@make -C libft
+	@make -s -C libft
 
-$(NAME): $(OBJS1) $(OBJS2)
-	gcc $(CFLAGS) $(OBJS1) $(OBJS2) $(LIBS) -o $(NAME)
+$(NAME): $(OBJS)
+	gcc $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
-bonus: $(OBJS2) $(OBJS3)
-	@make -C libft
-	gcc $(CFLAGS) $(OBJS2) $(OBJS3) $(LIBS) -o $(NAME_BONUS)
-	
 %.o: %.c
 	gcc $(CFLAGS) -c -o $@ $<
 	
+bonus: $(OBJSB)
+	@rm -rf srcs/main.o
+	@make -s -C libft
+	gcc $(CFLAGS) $(OBJSB) $(LIBS) -o $(NAME_BONUS)
+	
 clean:
-	@make clean -C libft
-	rm -f $(OBJS1) $(OBJS2) $(OBJS3)
+	@make clean -s -C libft
+	rm -f $(OBJS) $(OBJSB)
 
 fclean: clean
 	rm -f $(NAME) $(NAME_BONUS) $(LIBS)
